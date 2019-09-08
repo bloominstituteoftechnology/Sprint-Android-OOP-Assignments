@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HttpOperations</string>
+    <string name="http_operations">Http Operations</string>
+    <string name="get">GET</string>
+    <string name="post">POST</string>
+    <string name="put">PUT</string>
+    <string name="delete">DELETE</string>
+</resources>
