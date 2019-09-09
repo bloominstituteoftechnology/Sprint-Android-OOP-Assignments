@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".MainActivity">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/lambdaLogo"
+            android:layout_height="64dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/lambda_symbol"
+    />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/GetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/get"
+            android:textSize="18sp"
+    />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/PostButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/post"
+            android:textSize="18sp"
+    />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/PutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/put"
+            android:textSize="18sp"
+    />
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/DeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/delete"
+            android:textSize="18sp"
+    />
+
+</LinearLayout>
