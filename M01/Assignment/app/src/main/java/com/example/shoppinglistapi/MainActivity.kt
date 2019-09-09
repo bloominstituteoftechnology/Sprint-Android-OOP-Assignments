@@ -3,6 +3,11 @@ package com.example.shoppinglistapi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shoppinglistapi.adapter.BasicNotification
+import com.example.shoppinglistapi.adapter.ShoppingListAdapter
+import com.example.shoppinglistapi.respritory.ListRespritory
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -21,9 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         // TODO call the createView from List Respritory
         ListRespritory.createView()
-
-
-
 
 
         button_add.setOnClickListener {
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
               recycle.adapter = adapter */
 
         recycle.apply {
-            setHasFixedSize(true)
+      //    setHasFixedSize(true)
             layoutManager = LinearLayoutManager(applicationContext)
             adapter = ShoppingListAdapter(ListRespritory.createList)
         }
@@ -75,3 +77,4 @@ class MainActivity : AppCompatActivity() {
         return getSelectedItems
     }
 }
+

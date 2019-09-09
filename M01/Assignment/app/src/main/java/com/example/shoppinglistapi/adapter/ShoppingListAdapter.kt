@@ -15,7 +15,7 @@ class ShoppingListAdapter(val data: MutableList<ShoppingList>):
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var name = view.textView2
-        var image = view.image_view
+
         val listParent = view.shopping_list
         //TODO 10 add another constant to get the position
         var lastPostion = -1
@@ -43,13 +43,13 @@ class ShoppingListAdapter(val data: MutableList<ShoppingList>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // instead of declaring the value like in the comment bellow
-        /*   val viewGroup = LayoutInflater.from(parent.context).inflate(R.layout.shopping_list_item, parent, false)
+           val viewGroup = LayoutInflater.from(parent.context).inflate(R.layout.shopping_list_item, parent, false)
 
-        return ViewHolder(viewGroup)*/
-        return ViewHolder(
+        return ViewHolder(viewGroup)
+      /*  return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.shopping_list_item, parent, false) as View
-        )
+        )*/
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
