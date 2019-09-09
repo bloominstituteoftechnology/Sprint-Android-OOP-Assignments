@@ -40,6 +40,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gsonVersion"
 
     // TODO 10: Use moshi dependency
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
     // Retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

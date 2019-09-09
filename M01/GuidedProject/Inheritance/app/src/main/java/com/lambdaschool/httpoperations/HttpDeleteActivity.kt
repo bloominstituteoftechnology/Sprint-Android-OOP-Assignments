@@ -11,23 +11,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpDeleteActivity : AppCompatActivity() {
+class HttpDeleteActivity : HttpActivity() {
 
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
         title = "Delete Request: Delete existing employee with id 1"
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         deleteEmployee()
     }
 
     private fun deleteEmployee(){
         jsonPlaceHolderApi.deleteEmployee("1").enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+                this@HttpDeleteActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
