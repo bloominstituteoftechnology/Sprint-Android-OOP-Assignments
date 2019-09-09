@@ -12,14 +12,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpPutActivity : AppCompatActivity() {
+class HttpPutActivity : HttpActivity() {
 
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         title = "Put Request: Update existing Employee Steve"
         updateEmployee()
     }

@@ -1,8 +1,47 @@
 package com.lambdaschool.httpoperations.model
 
-data class Employee(val name:String, val id: Int, val age:Int, val title: String)
+import android.util.Log
+
+data class EmployeeJson(val name:String, val id: Int, val age:Int, val title: String)
+
+open class Employee(val name:String, val id: Int, val age:Int, val title: String) {
+    var email: String = "$title$name@bigcorp.com"
+
+    open fun signature(): String {
+        return "XOXO,\n$name\n$email"
+    }
+}
 
 // TODO 5: Try to make some subclasses of this class. Is there an issue?
+
+class Engineer(name:String, id: Int, age:Int, title: String): Employee(name, id, age, title) {
+    fun doEngineering() {
+        Log.i("Employee", "Doing engineering")
+    }
+
+    override fun signature(): String {
+        return "XOXO,\n $name\n$email"
+    }
+}
+
+class Officer(name:String, id: Int, age:Int, title: String): Employee(name, id, age, title) {
+
+    fun goToBoardMeeting() {
+        Log.i("Employee", "Going to meeting")
+    }
+}
+
+class Tester(name:String, id: Int, age:Int, title: String): Employee(name, id, age, title) {
+    fun approveForProduction() {
+        Log.i("Employee", "Approved")
+    }
+}
+
+class Designer(name:String, id: Int, age:Int, title: String): Employee(name, id, age, title) {
+    fun buildWireFrame() {
+        Log.i("Employee", "Approved")
+    }
+}
 
 // TODO 6: Make the Employee class open and start to derive some subclasses (CLevelEmployee, Engineer, etc.)
 
@@ -17,3 +56,44 @@ data class Employee(val name:String, val id: Int, val age:Int, val title: String
  */
 
 // TODO 9: Make up some data to use
+
+object employeesFakeData : ArrayList<Employee>(
+    arrayListOf(
+        Engineer(
+            name = "Steve",
+            id = 1,
+            age = 25,
+            title = "Engineer"
+        ),
+        Engineer(
+            name = "Mark",
+            id = 2,
+            age = 25,
+            title = "Engineer"
+        ),
+        Officer(
+            name = "Daniel",
+            id = 3,
+            age = 45,
+            title = "CTO"
+        ),
+        Officer(
+            name = "Justin",
+            id = 4,
+            age = 55,
+            title = "CEO"
+        ),
+        Tester(
+            name = "Matt",
+            id = 5,
+            age = 30,
+            title = "Tester"
+        ),
+        Designer(
+            name = "Mike",
+            id = 6,
+            age = 31,
+            title = "UX Designer"
+        )
+    )
+)

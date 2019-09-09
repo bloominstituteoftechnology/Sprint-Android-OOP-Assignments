@@ -11,15 +11,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpDeleteActivity : AppCompatActivity() {
-
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+class HttpDeleteActivity : HttpActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
         title = "Delete Request: Delete existing employee with id 1"
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         deleteEmployee()
     }
 

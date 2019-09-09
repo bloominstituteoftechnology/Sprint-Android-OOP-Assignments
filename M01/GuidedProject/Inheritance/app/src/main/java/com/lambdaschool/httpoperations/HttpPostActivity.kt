@@ -12,14 +12,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpPostActivity : AppCompatActivity() {
+class HttpPostActivity : HttpActivity() {
 
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         title = "Post Request: New Employee David"
         addnewEmployee()
     }
