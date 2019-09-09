@@ -43,13 +43,13 @@ class ShoppingListAdapter(val data: MutableList<ShoppingList>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // instead of declaring the value like in the comment bellow
-           val viewGroup = LayoutInflater.from(parent.context).inflate(R.layout.shopping_list_item, parent, false)
+       /*    val viewGroup = LayoutInflater.from(parent.context).inflate(R.layout.shopping_list_item, parent, false)
 
-        return ViewHolder(viewGroup)
-      /*  return ViewHolder(
+        return ViewHolder(viewGroup)*/
+        return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.shopping_list_item, parent, false) as View
-        )*/
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
