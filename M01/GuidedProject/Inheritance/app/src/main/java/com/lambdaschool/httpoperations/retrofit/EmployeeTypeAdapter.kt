@@ -1,5 +1,6 @@
 package com.lambdaschool.httpoperations.retrofit
 
+import com.lambdaschool.httpoperations.model.*
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
 
@@ -8,11 +9,20 @@ import com.squareup.moshi.ToJson
 
 internal class EmployeeTypeAdapter {
     @FromJson
-    internal fun eventFromJson(eventJson: EventJson): Event {
-        val event = Event()
-        event.title = eventJson.title
-        event.beginDateAndTime = eventJson.begin_date.toString() + " " + eventJson.begin_time
-        return event
+    internal fun employeeFromJson(employeeJson: EmployeeJson): Employee {
+
+
+        return when(employeeJson.title){
+            "engineer" -> Engineer(employeeJson.name, employeeJson.id, employeeJson.age, employeeJson.title)
+
+            "CTO", "CEO" -> Officer(employeeJson.name, employeeJson.id, employeeJson.age, employeeJson.title)
+
+            "Tester" -> Tester(employeeJson.name, employeeJson.id, employeeJson.age, employeeJson.title)
+
+            "UX Designer" -> Designer(employeeJson.name, employeeJson.id, employeeJson.age, employeeJson.title)
+
+            else -> Employee(employeeJson.name, employeeJson.id, employeeJson.age, employeeJson.title)
+        }
     }
 
 

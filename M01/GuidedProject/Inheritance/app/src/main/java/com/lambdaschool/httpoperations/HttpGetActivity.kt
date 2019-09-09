@@ -40,8 +40,9 @@ class HttpGetActivity : HttpActivity() {
         jsonPlaceHolderApi.getEmployees().enqueue(object : Callback<List<Employee>>{
 
             override fun onFailure(call: Call<List<Employee>>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+              //  progressBar.visibility = View.GONE
+             //   result.text = throwable.toString()
+                this@HttpGetActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
@@ -56,14 +57,14 @@ class HttpGetActivity : HttpActivity() {
                             .bold {append(employee.signature()) }
                             .append("${employee is Engineer}\n")
                             .append("\n")
-                            .bold { append("Name: ") }
-                            .append(employee.name).append("\n")
-                            .bold { append("Id: ") }
-                            .append(employee.id.toString()).append("\n")
-                            .bold { append("Age: ") }
-                            .append(employee.age.toString()).append("\n")
-                            .bold { append("Title: ") }
-                            .append(employee.title).append("\n").append("\n")
+              //              .bold { append("Name: ") }
+              //              .append(employee.name).append("\n")
+              //              .bold { append("Id: ") }
+              //              .append(employee.id.toString()).append("\n")
+              //              .bold { append("Age: ") }
+              //              .append(employee.age.toString()).append("\n")
+              //              .bold { append("Title: ") }
+              //              .append(employee.title).append("\n").append("\n")
                     }
                     result.text = content
                 }

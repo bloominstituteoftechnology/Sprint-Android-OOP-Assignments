@@ -11,9 +11,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpDeleteActivity : AppCompatActivity() {
+class HttpDeleteActivity : HttpActivity() {
 
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+  //lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,11 @@ class HttpDeleteActivity : AppCompatActivity() {
     private fun deleteEmployee(){
         jsonPlaceHolderApi.deleteEmployee("1").enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+        //        progressBar.visibility = View.GONE
+       //         result.text = throwable.toString()
+
+                //extracted to function to http activity and called it here
+                this@HttpDeleteActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {

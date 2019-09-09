@@ -29,8 +29,9 @@ class HttpPostActivity : HttpActivity() {
         val employee = Employee(age = 30, id = 7, name = "David", title = "Intern")
         jsonPlaceHolderApi.addNewEmployee(employee).enqueue(object : Callback<Employee>{
             override fun onFailure(call: Call<Employee>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+            //    progressBar.visibility = View.GONE
+            //    result.text = throwable.toString()
+                this@HttpPostActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<Employee>, response: Response<Employee>) {

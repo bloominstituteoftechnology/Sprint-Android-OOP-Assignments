@@ -2,6 +2,7 @@ package com.lambdaschool.httpoperations.retrofit
 
 
 import com.lambdaschool.httpoperations.model.Employee
+import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -50,6 +51,10 @@ interface JsonPlaceHolderApi {
                     .build()
 
                 // TODO 11: Use moshi with type adapter
+                val moshi = Moshi.Builder()
+                    .add(EmployeeTypeAdapter())
+                    .build()
+
                 val retrofit = Retrofit.Builder()
                     .client(okHttpClient)
                     .baseUrl(BASE_URL)
