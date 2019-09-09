@@ -19,7 +19,7 @@ class HttpDeleteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
         title = "Delete Request: Delete existing employee with id 1"
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
+
         deleteEmployee()
     }
 

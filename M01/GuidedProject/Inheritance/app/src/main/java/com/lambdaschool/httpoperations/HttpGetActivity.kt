@@ -6,20 +6,22 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import androidx.core.text.bold
 import com.lambdaschool.httpoperations.model.Employee
+import com.lambdaschool.httpoperations.model.Engineer
+import com.lambdaschool.httpoperations.model.employeesFakeData
 import com.lambdaschool.httpoperations.retrofit.JsonPlaceHolderApi
 import kotlinx.android.synthetic.main.activity_http_get.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpGetActivity : AppCompatActivity() {
+class HttpGetActivity : HttpActivity() {
 
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
+
         val type = intent.getStringExtra("get")
         if (type == "simple") {
             title = "GET - Simple Request"
@@ -51,6 +53,9 @@ class HttpGetActivity : AppCompatActivity() {
                     val content = SpannableStringBuilder()
                     employees?.forEach { employee ->
                         content
+                            .bold {append(employee.signature()) }
+                            .append("${employee is Engineer}\n")
+                            .append("\n")
                             .bold { append("Name: ") }
                             .append(employee.name).append("\n")
                             .bold { append("Id: ") }

@@ -7,6 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
@@ -52,7 +53,7 @@ interface JsonPlaceHolderApi {
                 val retrofit = Retrofit.Builder()
                     .client(okHttpClient)
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(MoshiConverterFactory.create())
                     .build()
 
                 return retrofit.create(JsonPlaceHolderApi::class.java)
