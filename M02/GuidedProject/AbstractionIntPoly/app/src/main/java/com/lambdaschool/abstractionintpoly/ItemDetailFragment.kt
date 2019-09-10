@@ -1,5 +1,6 @@
 package com.lambdaschool.abstractionintpoly
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,9 +34,16 @@ class ItemDetailFragment : Fragment() {
 
                 item = it.getSerializable(ARG_ITEM_ID) as SwApiObject
 
-                val dff = it.getSerializable(ARG_ITEM_ID) as SwApiObject
+                val item = it.getSerializable(ARG_ITEM_ID) as SwApiObject
                 activity?.toolbar_layout?.let { layout ->
                     // TODO 11: S05M02-13 set up the item from the object
+
+
+                        layout.title = item?.name ?: ""
+
+
+
+
                 }
             }
         }
@@ -47,15 +55,44 @@ class ItemDetailFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
+        rootView.send.setOnClickListener {
+            responseObject?.provideInfoForObject(item?.info() ?: "NO INFO PROVIDED")
+        }
+
         // TODO 10: Set up the drawable from the item
+        item?.let {
+            rootView.item_image.setImageDrawable(
+                rootView.context.getDrawable(
+                    DrawableResolver.getDrawableId()
+                )
+            )
+        }
+
 
         return rootView
     }
 
     // TODO 13: S05M02-15 Create your own interface to communicate with the Activity
+    interface DetailResponse{
+        fun provideInfoForObject(info: String)
+    }
 
-    // TODO 16: Store the Activity in a property in onAttach
+    private var responseObject: DetailResponse? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
+    if (context is DetailResponse){
+        responseObject = context
+    }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+    responseObject= null
+    }
+    fun sendInfo(view: View){
+        responseObject?.provideInfoForObject(item?.info() ?: "no info")
+    }
     // TODO 17: Null out the property in onDetach
 
     companion object {

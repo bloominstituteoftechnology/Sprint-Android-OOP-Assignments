@@ -1,11 +1,10 @@
-package com.lambdaschool.abstractionintpoly
+package com.example.travel
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.lambdaschool.abstractionintpoly.model.SwApiObject
+import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -21,14 +20,9 @@ class ItemDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(detail_toolbar)
 
-        val swObject =
-            (intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM_ID) as SwApiObject)
-
         fab.setOnClickListener { view ->
-            // TODO 12: Show a Snackbar with object info
-            Snackbar.make(view, swObject.info(), Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-
         }
 
         // Show the Up button in the action bar.
@@ -48,9 +42,9 @@ class ItemDetailActivity : AppCompatActivity() {
             // using a fragment transaction.
             val fragment = ItemDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(
+                    putString(
                         ItemDetailFragment.ARG_ITEM_ID,
-                        intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM_ID)
+                        intent.getStringExtra(ItemDetailFragment.ARG_ITEM_ID)
                     )
                 }
             }
@@ -75,6 +69,4 @@ class ItemDetailActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
-    // TODO 15: Implement the Fragment interface(stretch goal in the assigment)
 }

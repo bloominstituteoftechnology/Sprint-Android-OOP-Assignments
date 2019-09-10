@@ -12,3 +12,13 @@ package com.lambdaschool.abstractionintpoly.model
  */
 
 // TODO 3: S05M02-3 Add class which inherits from parent class
+data class Starship (
+    var model: String, val manufacture: String, val costCredits: String, val length: String
+
+): SwApiObject(){
+    override fun info(): String ="$model,  $manufacture"
+    override fun toString(): String{
+        return "$model, some text here $costCredits, some text here $name"
+    }
+}
+

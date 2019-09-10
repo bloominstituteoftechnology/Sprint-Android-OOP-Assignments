@@ -1,13 +1,28 @@
 package com.lambdaschool.abstractionintpoly.retrofit
 
+import android.app.Person
+import com.lambdaschool.abstractionintpoly.model.Starship
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
 // TODO 5: S05M02-5 Add the networking calls
 interface StarWarsAPI {
+
+    //thats it for get person API
+    @GET("/people/{id}")
+    fun getPerson(id: Int): Call<Person>
+
+
+    @GET("/starship/{id}")
+    fun getStarship(id: Int): Call<Starship>
+
+
 
     class Factory {
 
