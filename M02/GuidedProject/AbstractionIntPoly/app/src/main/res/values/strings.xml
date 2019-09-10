@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">L-S5M2</string>
+
+    <string name="main_title">Abstraction, Interfaces, and Polymorphism</string>
+    <string name="lambda_logo">Lambda Logo</string>
+
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_item_list">Items</string>
+    <string name="no_network">Please check your internet connection and try again</string>
+</resources>
