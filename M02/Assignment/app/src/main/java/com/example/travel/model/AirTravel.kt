@@ -1,7 +1,7 @@
 package com.example.travel.model
 
 interface AirTravel {
-    fun fly()
+
 
 
 
@@ -9,7 +9,7 @@ interface AirTravel {
 }
 
 interface WaterTravel {
-    fun sail()
+
 
 }
 

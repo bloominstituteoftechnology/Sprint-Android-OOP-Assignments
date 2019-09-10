@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.example.travel.dummy.DummyContent
-import com.example.travel.model.Car
-import com.example.travel.model.Vehicle
+import com.example.travel.model.*
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
@@ -39,7 +37,12 @@ class ItemListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_item_list)
 
         typesOfTrasport = mutableListOf(
-            Car()
+            Car(),
+            Plane(),
+            SpeedBoat(),
+            Helicopter(),
+            Yaht(),
+            Motorcycle()
         )
 
         setSupportActionBar(toolbar)
@@ -104,10 +107,10 @@ class ItemListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
-            holder.idView.text = "${item.id}"
+            holder.idView.text = item.id
 
             //inflating my data classes classes
-            holder.contentView.text = item.travelBy() ?: " "
+            holder.contentView.text = item.travelBy()
 
             with(holder.itemView) {
                 tag = item

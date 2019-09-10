@@ -3,7 +3,7 @@ package com.example.travel.model
 import java.io.Serializable
 
 abstract class Vehicle (
-  open  var id: String? = null,
+  open  var id: String = "TYPE",
   open  var weight: Int = 0,
   open  var isFav: Boolean =false
 ):Serializable{
