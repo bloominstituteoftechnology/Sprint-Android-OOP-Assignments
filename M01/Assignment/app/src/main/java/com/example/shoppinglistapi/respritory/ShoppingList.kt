@@ -41,8 +41,29 @@ open class  ShoppingList protected constructor(val colorId: Int, val productName
                 """.trimIndent()
         }
 
-    }
 
+    }
+class Cosmetics(colorId: Int, productName: String, itemPrice: String, val brand: String)
+    : ShoppingList(colorId, productName, itemPrice){
+    override fun getDisplayName(): String {
+        return """
+        Product name: $productName
+        Product price: $itemPrice
+        Product brand: $brand
+        """.trimIndent()
+
+
+    }
+}
+class AutoItem(colorId: Int, productName: String, itemPrice: String, val part: String): ShoppingList(colorId, productName, itemPrice){
+    override fun getDisplayName(): String {
+        return """
+        Product name: $productName
+        Product price: $itemPrice
+        Product brand: $part
+        """.trimIndent()
+    }
+}
 
 
 

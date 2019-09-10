@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shoppinglistapi.adapter.ShoppingListAdapter
+import com.example.shoppinglistapi.respritory.AutoItem
+import com.example.shoppinglistapi.respritory.Cosmetics
 import com.example.shoppinglistapi.respritory.GroceryItem
 import com.example.shoppinglistapi.respritory.ShoppingList
 
@@ -53,13 +55,38 @@ class MainActivity : AppCompatActivity() {
             "2.99",
             true
         ),
+        AutoItem(
+            Color.GRAY,
+            "Oil",
+            "4.99",
+        "Motor Oil"
+        ),
+
+
         GroceryItem(
             Color.GREEN,
             "Bread",
             "1.99",
             false
+        ),
+        Cosmetics(
+            Color.RED,
+            "Lipstick",
+        "5.99",
+        "Maybelene"
+        ),
+        Cosmetics(
+            Color.RED,
+        "Mask",
+        "10.99",
+        "Cover Girl"
+        ),
+        AutoItem(
+            Color.GRAY,
+            "Valve",
+        "199.99",
+            "Engine Part"
         )
-
 
 
     )
