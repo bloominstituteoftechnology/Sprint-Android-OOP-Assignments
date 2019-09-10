@@ -43,6 +43,7 @@ open class  ShoppingList protected constructor(val colorId: Int, val productName
 
 
     }
+// TODO 7 create second subclass
 class Cosmetics(colorId: Int, productName: String, itemPrice: String, val brand: String)
     : ShoppingList(colorId, productName, itemPrice){
     override fun getDisplayName(): String {
@@ -55,6 +56,7 @@ class Cosmetics(colorId: Int, productName: String, itemPrice: String, val brand:
 
     }
 }
+//TODO 8 create third subclass
 class AutoItem(colorId: Int, productName: String, itemPrice: String, val part: String): ShoppingList(colorId, productName, itemPrice){
     override fun getDisplayName(): String {
         return """
