@@ -16,6 +16,6 @@ interface WaterTravel {
 
 
 interface GroundTravel {
-    fun drive()
+
 
 }
