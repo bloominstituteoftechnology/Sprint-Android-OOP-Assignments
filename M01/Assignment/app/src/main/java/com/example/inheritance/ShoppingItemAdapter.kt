@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inheritance.model.ShoppingItem
 import kotlinx.android.synthetic.main.list_item_view.view.*
@@ -12,7 +13,7 @@ class ShoppingItemAdapter(val data:List<ShoppingItem>): RecyclerView
 .Adapter<ShoppingItemAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-          val item: TextView = view.text_item_list
+          val itemText: TextView = view.text_item
     }
 
 
@@ -26,7 +27,8 @@ class ShoppingItemAdapter(val data:List<ShoppingItem>): RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-           holder.item.text = data[position].name
+           holder.itemText.text = data[position].name
+           data.get(position).colorId?.let { holder.itemText.setTextColor(ContextCompat.getColor(holder.itemText.context,it)) }
     }
 
 }

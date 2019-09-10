@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inheritance.model.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.shop_recycle_activity.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,8 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+       recyclerview.apply {
+          layoutManager = LinearLayoutManager(this@MainActivity)
+           adapter = ShoppingItemAdapter(shoppingList())
+       }
+
 
 
 
