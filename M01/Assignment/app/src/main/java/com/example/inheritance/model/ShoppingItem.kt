@@ -28,9 +28,4 @@ class ExcercuseItem(name: String,colorId: Int,var brand:String):ShoppingItem(nam
 }
 
 
-var food = GroceryItem("apple",20,true)
-
-var pants = ClothingItem("Jeans",12,29)
-
-var machine = ExcercuseItem("benchpress4000",80,"WEIGHT KING")
 
