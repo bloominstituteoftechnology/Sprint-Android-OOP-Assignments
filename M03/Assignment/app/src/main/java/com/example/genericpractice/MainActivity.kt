@@ -15,20 +15,20 @@ class MainActivity : AppCompatActivity() {
         // TODO 1 Create a simple example of a mutableList that takes strings as parameters
         val myStringList = singleList(1)
     }
-    fun<T> singleList(t: T): List<T>{
+
+    fun <T> singleList(t: T): List<T> {
         val theList = mutableListOf<T>()
         return theList
     }
-    class Ball
+}
 
-    class Box<T>(private var item: T){
+
+class Phone1
+
+    class CellularService1<T>(private var item: T){
         var open = false
         fun fetch(): T? {
             return item.takeIf { open }
         }
     }
-
-    }
-
-
 
