@@ -215,7 +215,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
             // TODO 9: S05M02-9 bind data to new views
             holder.categoryView.text = swApiObject.category
             //image view drawable resolver
-            holder.imageView.context.getDrawable(DrawableResolver.getDrawableId(swApiObject.category, swApiObject.id))
+            holder.imageView.context.getDrawable(DrawableResolver.getDrawableId(swApiObject.id,))
 
             with(holder.itemView) {
                 tag = swApiObject

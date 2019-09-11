@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.lambdaschool.abstractionintpoly.model.SwApiObject
 import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
+import kotlinx.android.synthetic.main.item_list_content.*
 
 /**
  * A fragment representing a single Item detail screen.
@@ -63,7 +64,7 @@ class ItemDetailFragment : Fragment() {
         item?.let {
             rootView.item_image.setImageDrawable(
                 rootView.context.getDrawable(
-                    DrawableResolver.getDrawableId()
+                    DrawableResolver.getDrawableId(id, category)
                 )
             )
         }
