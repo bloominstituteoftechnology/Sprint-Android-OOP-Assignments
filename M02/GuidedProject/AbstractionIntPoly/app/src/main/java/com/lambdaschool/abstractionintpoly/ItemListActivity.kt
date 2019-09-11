@@ -120,8 +120,8 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                     val person = response.body()
                     //if its null
                     person?.let {
-                        it.id = person.id
-                        it.category = DrawableResolver.CHARACTER
+                  //      it.id = person.id
+                  //      it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(person)
                         viewAdapter?.notifyItemChanged(swApiObjects.size -1)
                     }
@@ -147,7 +147,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                     val starship = response.body()
                     //if its null
                     starship?.let {
-                        it.model = id
+           //             it.model = id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(starship)
                         viewAdapter?.notifyItemChanged(swApiObjects.size - 1)
