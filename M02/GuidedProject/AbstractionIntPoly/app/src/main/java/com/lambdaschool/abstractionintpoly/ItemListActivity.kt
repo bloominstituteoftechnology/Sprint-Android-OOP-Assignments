@@ -21,6 +21,7 @@ import com.lambdaschool.abstractionintpoly.model.Person
 import com.lambdaschool.abstractionintpoly.model.Starship
 import com.lambdaschool.abstractionintpoly.model.SwApiObject
 import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPI
+import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPIFake
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -76,8 +77,8 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
             // activity should be in two-pane mode.
             twoPane = true
         }
-
-        starWarsAPI = StarWarsAPI.Factory.create()
+// TODO 20 CALL FAKE API
+        starWarsAPI = StarWarsAPIFake.Factory.create()
 
         setupRecyclerView(item_list as RecyclerView)
     }
