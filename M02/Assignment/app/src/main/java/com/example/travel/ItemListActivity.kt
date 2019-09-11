@@ -24,13 +24,14 @@ import kotlinx.android.synthetic.main.item_list.*
  * item details side-by-side using two vertical panes.
  */
 class ItemListActivity : AppCompatActivity() {
+    companion object
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private var twoPane: Boolean = false
-    var typesOfTrasport = mutableListOf<Vehicle>()
+   var typesOfTrasport = mutableListOf<Vehicle>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

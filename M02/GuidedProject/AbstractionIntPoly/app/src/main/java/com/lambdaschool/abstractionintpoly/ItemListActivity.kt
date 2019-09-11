@@ -98,7 +98,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
         //shuffle the item
         persons.shuffle()
         persons.forEach {
-            getPerson(it)
+        getPerson(it)
         }
         // Add starships
         val starships = mutableListOf(1, 2, 3, 4, 5)
@@ -120,7 +120,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                     val person = response.body()
                     //if its null
                     person?.let {
-                        it.name = id
+                        it.id = person.id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(person)
                         viewAdapter?.notifyItemChanged(swApiObjects.size -1)

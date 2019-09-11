@@ -5,7 +5,12 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.example.travel.ItemDetailFragment.Companion.ARG_ITEM_ID
+import com.example.travel.model.Car
+import com.example.travel.model.Vehicle
 import kotlinx.android.synthetic.main.activity_item_detail.*
+import kotlinx.android.synthetic.main.item_detail.*
+import kotlinx.android.synthetic.main.item_list.*
 
 /**
  * An activity representing a single Item detail screen. This
@@ -19,6 +24,8 @@ class ItemDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(detail_toolbar)
+
+        item_detail?.text
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
@@ -69,5 +76,4 @@ class ItemDetailActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
 }
