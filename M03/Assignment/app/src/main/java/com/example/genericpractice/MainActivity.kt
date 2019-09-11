@@ -19,6 +19,15 @@ class MainActivity : AppCompatActivity() {
         val theList = mutableListOf<T>()
         return theList
     }
+    class Ball
+
+    class Box<T>(private var item: T){
+        var open = false
+        fun fetch(): T? {
+            return item.takeIf { open }
+        }
+    }
+
     }
 
 
