@@ -2,7 +2,7 @@ package com.lambdaschool.abstractionintpoly
 
 import android.app.Activity
 import android.app.ActivityOptions
-import android.app.Person
+
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.lambdaschool.abstractionintpoly.model.Person
 import com.lambdaschool.abstractionintpoly.model.Starship
 import com.lambdaschool.abstractionintpoly.model.SwApiObject
 import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPI
@@ -34,7 +35,11 @@ import retrofit2.Response
  * lead to a [ItemDetailActivity] representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
+ *
  */
+
+
+// TODO 14: Implement the Fragment interface
 class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
 
     //hook for an object thats indirect
@@ -98,7 +103,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
         //shuffle the item
         persons.shuffle()
         persons.forEach {
-        getPerson(it)
+       getPerson(it)
         }
         // Add starships
         val starships = mutableListOf(1, 2, 3, 4, 5)
@@ -109,32 +114,30 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
         }
     }
     fun getPerson(id: Int){
-        starWarsAPI.getPerson(id).enqueue(object: Callback<Person>{
-            override fun onFailure(call: Call<Person>, t: Throwable) {
-                progressBar.visibility = View.GONE
-            }
 
-            override fun onResponse(call: Call<Person>, response: Response<Person>) {
-                progressBar.visibility = View.GONE
-                if(response.isSuccessful){
-                    val person = response.body()
-                    //if its null
-                    person?.let {
-                  //      it.id = person.id
-                  //      it.category = DrawableResolver.CHARACTER
-                        swApiObjects.add(person)
-                        viewAdapter?.notifyItemChanged(swApiObjects.size -1)
+            starWarsAPI.getPerson(id).enqueue( object: Callback<Person>{
+                override fun onFailure(call: Call<Person>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                }
+
+                override fun onResponse(call: Call<Person>, response: Response<Person>) {
+                    progressBar.visibility = View.GONE
+                    if(response.isSuccessful){
+                        val person = response.body()
+                        //if its null
+                        person?.let {
+                            it.id = id
+                            it.category = DrawableResolver.CHARACTER
+                            swApiObjects.add(person)
+                            viewAdapter?.notifyItemChanged(swApiObjects.size -1)
+                        }
                     }
                 }
-            }
 
+            })
         }
 
 
-
-        )
-
-    }
     fun getStarship(id: Int){
         starWarsAPI.getStarship(id).enqueue(object: Callback<Starship> {
             override fun onFailure(call: Call<Starship>, t: Throwable) {
@@ -147,7 +150,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                     val starship = response.body()
                     //if its null
                     starship?.let {
-           //             it.model = id
+                        it.id = id
                         it.category = DrawableResolver.CHARACTER
                         swApiObjects.add(starship)
                         viewAdapter?.notifyItemChanged(swApiObjects.size - 1)
@@ -155,7 +158,7 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
                 }
             }
 
-        }
+        })
 
     }
 
@@ -213,9 +216,14 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
             holder.nameView.text = swApiObject.name ?: ""
 
             // TODO 9: S05M02-9 bind data to new views
-            holder.categoryView.text = swApiObject.category
+
             //image view drawable resolver
-            holder.imageView.context.getDrawable(DrawableResolver.getDrawableId(swApiObject.id,))
+            holder.categoryView.text = swApiObject.category
+            holder.imageView.setImageDrawable(
+                holder.imageView.context.getDrawable(
+                    DrawableResolver.getDrawableId(swApiObject.id, swApiObject.category)
+                )
+            )
 
             with(holder.itemView) {
                 tag = swApiObject
@@ -254,5 +262,5 @@ class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse 
         return networkInfo?.isConnected == true
     }
 
-    // TODO 14: Implement the Fragment interface
+
 }

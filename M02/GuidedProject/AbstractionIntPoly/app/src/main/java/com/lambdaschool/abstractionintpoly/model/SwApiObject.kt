@@ -8,7 +8,7 @@ abstract class SwApiObject(
 open    val name: String? =null,
 open val url: String? = null,
 open var id : Int = 0,
-open var category: String = " "
+open var category: String =  ""
 
 )
     : Serializable{
