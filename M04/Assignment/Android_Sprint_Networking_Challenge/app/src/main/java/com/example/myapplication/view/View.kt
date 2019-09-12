@@ -16,7 +16,7 @@ class View : AppCompatActivity() {
    // private var viewModel = ViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var binding = DataBindingUtil.setContentView<ActivityViewBinding>(this,R.layout.activity_view)
+        val binding = DataBindingUtil.setContentView<ActivityViewBinding>(this,R.layout.activity_view)
         binding.viewModel = ViewModel()
         binding.executePendingBindings()
     }

@@ -5,13 +5,14 @@ import android.util.Patterns
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import com.example.myapplication.model.AblityList
 import com.example.myapplication.model.Pokemon
 import com.example.myapplication.model.PokemonView
 import com.example.myapplication.model.Sprites
 
 class ViewModel: BaseObservable() {
 
-    private var pokemon: PokemonView = PokemonView( "PIKACHU", "25")
+    private var pokemon: PokemonView = PokemonView( "PIKACHU", "2")
     private val successMessage = "Interaction Success!"
     private val failMessage = "Interaction Failed!"
 
@@ -19,7 +20,7 @@ class ViewModel: BaseObservable() {
      var toastMessage: String? = null
     set(value) {
         field = value
-        notifyPropertyChanged(BR.toastMessage)
+       notifyPropertyChanged(BR.toastMessage)
     }
     @Bindable
     fun getName(): String?{

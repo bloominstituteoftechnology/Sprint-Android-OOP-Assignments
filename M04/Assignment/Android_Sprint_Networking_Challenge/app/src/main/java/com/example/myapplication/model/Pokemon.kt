@@ -47,11 +47,11 @@ data class TypeList(
 
 data class Pokemon (
 
-    val name: String,
+    var name: String,
 
     val sprites: Sprites,
 
-    val id: Int,
+    var id: Int,
 
     //thats how to reference the list of abilities
 
