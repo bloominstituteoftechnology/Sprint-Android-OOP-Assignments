@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         actorObservable.subscribe(){
             actor->println("The observable returned $actor")
         }
+
+        val movieObservable = DummyMovieFakeAPI.getFourMovieData()
+        movieObservable.subscribe(){
+            movie->println("The observable returned $movie")
+        }
     }
 
     data class Actor(val name: String)
@@ -40,20 +45,17 @@ class MainActivity : AppCompatActivity() {
 
     class DummyMovieFakeAPI{
         companion object{
-            fun create(): MovieAPI {
-
-                return object: MovieAPI{
-
-                    override fun getMovies(val title: String): Call<Movie>{
-
-                    }
-
-                }
+            fun getFourMovieData(): Observable<List<Movie>>{
+                return Observable.just(
+                    listOf(Movie(2019, "Get Out", "English", 8.7),
+                    Movie(2018, "Overlord", "English", 8.5),
+                    Movie(2019, "Happy Death Day 2u", "English", 6.5),
+                    Movie(2019, "The Last Black Man in San Francisco", "English", 9.0)
+                    )
+                )
             }
         }
     }
-
-
 }
 
 data class Movie(val yearOfRelease: Int, val title: String, val language: String, val imdbRating: Double)
