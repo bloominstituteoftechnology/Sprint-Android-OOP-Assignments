@@ -1,6 +1,13 @@
 package com.lambdaschool.httpoperations
 
+import androidx.appcompat.app.AppCompatActivity
+import com.lambdaschool.httpoperations.retrofit.JsonPlaceHolderApi
+
 // TODO 1: Look at Http<Op>Activity classes for behavior to extract
+class HttpActivity: AppCompatActivity(){
+    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+
+}
 
 // TODO 2: Define a parent class in this file called HttpActivity that extracts it
 
