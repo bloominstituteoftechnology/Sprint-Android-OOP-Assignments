@@ -41,6 +41,8 @@ Open MainActivity.kt and update the `onCreate` event to use DataBinding:
     }
 ```
 
+**Note:** The `ActivityMainBinding` class is _generated_ by the compiler for you. You don't have to manually define it anywhere, it's provided automatically since you're performing DataBinding in your MainActivity layout. 
+
 ### STEP 6 - Implement DataBinding UI
 A) Add the `ViewModel` to the top of your Activity layouts:
 ```Xml
