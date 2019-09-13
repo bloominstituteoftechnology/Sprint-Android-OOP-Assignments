@@ -21,7 +21,7 @@
             android:layout_margin="8dp"
             android:orientation="vertical">
 
-            <EditText
+            <TextView
                 android:id="@+id/txtPokemonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,8 +29,12 @@
 
 
             <Button
+
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+
                 android:layout_marginTop="8dp"
                 android:onClick="@{() -> viewModel.onPokemonClick()}"
                 android:text="View Detail" />

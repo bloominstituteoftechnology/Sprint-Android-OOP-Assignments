@@ -12,7 +12,7 @@ import com.example.myapplication.model.Sprites
 
 class ViewModel: BaseObservable() {
 
-    private var pokemon: PokemonView = PokemonView( "PIKACHU", "2")
+    private var pokemon: PokemonView = PokemonView("PICHA", "4" )
     private val successMessage = "Interaction Success!"
     private val failMessage = "Interaction Failed!"
 
@@ -20,7 +20,9 @@ class ViewModel: BaseObservable() {
      var toastMessage: String? = null
     set(value) {
         field = value
+
        notifyPropertyChanged(BR.toastMessage)
+            return
     }
     @Bindable
     fun getName(): String?{
@@ -33,8 +35,7 @@ class ViewModel: BaseObservable() {
         notifyPropertyChanged(BR.number)
     }
     fun isValid():Boolean{
-        return !TextUtils.isEmpty(getName()) &&
-                (getNumber()?.length ?: 0) > 777
+        return !TextUtils.isEmpty(getName())
     }
     fun onPokemonClick(): String{
         toastMessage = return if (isValid()){
