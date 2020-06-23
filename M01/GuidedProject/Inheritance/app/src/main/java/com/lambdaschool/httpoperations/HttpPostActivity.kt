@@ -1,25 +1,20 @@
 package com.lambdaschool.httpoperations
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
 import androidx.core.text.bold
 import com.lambdaschool.httpoperations.model.Employee
-import com.lambdaschool.httpoperations.retrofit.JsonPlaceHolderApi
 import kotlinx.android.synthetic.main.activity_http_get.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpPostActivity : AppCompatActivity() {
-
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+class HttpPostActivity : HttpActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         title = "Post Request: New Employee David"
         addnewEmployee()
     }
@@ -29,8 +24,7 @@ class HttpPostActivity : AppCompatActivity() {
         val employee = Employee(age = 30, id = 7, name = "David", title = "Intern")
         jsonPlaceHolderApi.addNewEmployee(employee).enqueue(object : Callback<Employee>{
             override fun onFailure(call: Call<Employee>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+                this@HttpPostActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
