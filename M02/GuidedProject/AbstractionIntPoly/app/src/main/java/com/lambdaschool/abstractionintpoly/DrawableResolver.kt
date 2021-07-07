@@ -121,7 +121,7 @@ object DrawableResolver {
         R.drawable.vehicles_42
     )
 
-    fun getDrawableId(category: String, id: Int): Int {
+    fun getDrawableId(id: Int, category: Any): Int {
         return try {
             when (category) {
                 CHARACTER -> characters[id]

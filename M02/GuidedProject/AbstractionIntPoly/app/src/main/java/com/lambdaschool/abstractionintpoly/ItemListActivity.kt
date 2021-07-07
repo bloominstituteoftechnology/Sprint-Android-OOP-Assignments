@@ -2,6 +2,7 @@ package com.lambdaschool.abstractionintpoly
 
 import android.app.Activity
 import android.app.ActivityOptions
+
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -16,8 +17,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.lambdaschool.abstractionintpoly.model.Person
+import com.lambdaschool.abstractionintpoly.model.Starship
 import com.lambdaschool.abstractionintpoly.model.SwApiObject
 import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPI
+import com.lambdaschool.abstractionintpoly.retrofit.StarWarsAPIFake
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -32,15 +36,26 @@ import retrofit2.Response
  * lead to a [ItemDetailActivity] representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
+ *
  */
-class ItemListActivity : AppCompatActivity() {
+
+
+// TODO 14: Implement the Fragment interface
+class ItemListActivity : AppCompatActivity(), ItemDetailFragment.DetailResponse {
+
+    //hook for an object thats indirect
+    override fun provideInfoForObject(info: String) {
+
+
+        Toast.makeText(this, "we got the ingfo from detail\n$info", Toast.LENGTH_LONG).show()
+    }
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private var twoPane: Boolean = false
-
+    //set up the API var
     var swApiObjects = mutableListOf<SwApiObject>()
     private var viewAdapter: SimpleItemRecyclerViewAdapter? = null
 
@@ -62,15 +77,15 @@ class ItemListActivity : AppCompatActivity() {
             // activity should be in two-pane mode.
             twoPane = true
         }
-
-        starWarsAPI = StarWarsAPI.Factory.create()
+// TODO 20 CALL FAKE API
+        starWarsAPI = StarWarsAPIFake.Factory.create()
 
         setupRecyclerView(item_list as RecyclerView)
     }
 
     // TODO 6: S05M02-6 pull out fields from recyclerview construction and call our method
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        viewAdapter = SimpleItemRecyclerViewAdapter(this, swApiObjects, twoPane)
+        viewAdapter = SimpleItemRecyclerViewAdapter(this, swApiObjects, twoPane) //swap comes as variable from above
         recyclerView.adapter = viewAdapter
 
         if (isNetworkConnected()) {
@@ -85,8 +100,67 @@ class ItemListActivity : AppCompatActivity() {
     private fun getData() {
 
         // Add people
-
+        val persons = mutableListOf(1, 2, 3, 4, 5)
+        //shuffle the item
+        persons.shuffle()
+        persons.forEach {
+       getPerson(it)
+        }
         // Add starships
+        val starships = mutableListOf(1, 2, 3, 4, 5)
+        //shuffle the item
+        starships.shuffle()
+        starships.forEach {
+            getStarship(it)
+        }
+    }
+    fun getPerson(id: Int){
+
+            starWarsAPI.getPerson(id).enqueue( object: Callback<Person>{
+                override fun onFailure(call: Call<Person>, t: Throwable) {
+                    progressBar.visibility = View.GONE
+                }
+
+                override fun onResponse(call: Call<Person>, response: Response<Person>) {
+                    progressBar.visibility = View.GONE
+                    if(response.isSuccessful){
+                        val person = response.body()
+                        //if its null
+                        person?.let {
+                            it.id = id
+                            it.category = DrawableResolver.CHARACTER
+                            swApiObjects.add(person)
+                            viewAdapter?.notifyItemChanged(swApiObjects.size -1)
+                        }
+                    }
+                }
+
+            })
+        }
+
+
+    fun getStarship(id: Int){
+        starWarsAPI.getStarship(id).enqueue(object: Callback<Starship> {
+            override fun onFailure(call: Call<Starship>, t: Throwable) {
+                progressBar.visibility = View.GONE
+            }
+
+            override fun onResponse(call: Call<Starship>, response: Response<Starship>) {
+                progressBar.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val starship = response.body()
+                    //if its null
+                    starship?.let {
+                        it.id = id
+                        it.category = DrawableResolver.CHARACTER
+                        swApiObjects.add(starship)
+                        viewAdapter?.notifyItemChanged(swApiObjects.size - 1)
+                    }
+                }
+            }
+
+        })
+
     }
 
     class SimpleItemRecyclerViewAdapter(
@@ -139,8 +213,18 @@ class ItemListActivity : AppCompatActivity() {
             val swApiObject = values[position]
 
             // TODO 8: S05M02-8 convert id to string to display
+            holder.idView.text ="${swApiObject.id}" //sawp.id.tostring() is same
+            holder.nameView.text = swApiObject.name ?: ""
 
             // TODO 9: S05M02-9 bind data to new views
+
+            //image view drawable resolver
+            holder.categoryView.text = swApiObject.category
+            holder.imageView.setImageDrawable(
+                holder.imageView.context.getDrawable(
+                    DrawableResolver.getDrawableId(swApiObject.id, swApiObject.category)
+                )
+            )
 
             with(holder.itemView) {
                 tag = swApiObject
@@ -179,5 +263,5 @@ class ItemListActivity : AppCompatActivity() {
         return networkInfo?.isConnected == true
     }
 
-    // TODO 14: Implement the Fragment interface
+
 }
